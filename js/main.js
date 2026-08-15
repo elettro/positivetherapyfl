@@ -42,4 +42,15 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // Homepage hero clinical pillar wording
+  document.querySelectorAll('span').forEach(span => {
+    const text = span.textContent.trim();
+    if (text === 'Licensed Psychotherapy Specialists') {
+      span.textContent = 'Individual & Couples Therapy';
+    }
+    if (text === 'GLP-1 & Lab-Informed Programs') {
+      span.textContent = 'Weight Loss - GLP-1';
+    }
+  });
 });
