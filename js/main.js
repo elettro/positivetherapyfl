@@ -71,18 +71,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
-  // Global Services navigation: show only the current eight priority services.
-  // Weight Loss GLP-1 is intentionally treated as the strongest CTA.
+  // Global Services navigation: weight loss CTA on top, then two curated columns.
   if (header) {
     const serviceItems = [
       { label: 'Weight Loss GLP-1', href: '/positivetherapyfl/glp-1-weight-loss/', featured: true },
-      { label: 'Individual Therapy', href: '/positivetherapyfl/individual-counseling/' },
-      { label: 'Couples And Family Therapy', href: '/positivetherapyfl/couples-counseling/' },
-      { label: 'Teen Counselling', href: '/positivetherapyfl/teen-adolescent-therapy/' },
-      { label: 'Maternal Mental Wellness', href: '/positivetherapyfl/support-for-new-mothers/' },
-      { label: 'Couples Retreat', href: '/positivetherapyfl/faq/#book' },
-      { label: 'ADHD Evaluation Package', href: '/positivetherapyfl/faq/#book' },
-      { label: 'Autism Consultation', href: '/positivetherapyfl/faq/#book' }
+      { label: 'Individual Therapy', href: '/positivetherapyfl/individual-counseling/', column: 'left' },
+      { label: 'Couples And Family Therapy', href: '/positivetherapyfl/couples-counseling/', column: 'left' },
+      { label: 'Teen Counselling', href: '/positivetherapyfl/teen-adolescent-therapy/', column: 'left' },
+      { label: 'Maternal Mental Wellness', href: '/positivetherapyfl/support-for-new-mothers/', column: 'left' },
+      { label: 'ADHD Evaluation Package', href: '/positivetherapyfl/faq/#book', column: 'right' },
+      { label: 'Autism Consultation', href: '/positivetherapyfl/faq/#book', column: 'right' },
+      { label: 'Couples Retreat', href: '/positivetherapyfl/faq/#book', column: 'right' },
+      { label: 'Coming soon - Wedding venue', href: '#', column: 'right', comingSoon: true }
     ];
 
     const desktopServicesGroup = Array.from(header.querySelectorAll('.group')).find(group => {
@@ -105,10 +105,10 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <div class="services-priority-grid">
               ${serviceItems.map(item => `
-                <a href="${item.href}" class="${item.featured ? 'services-priority-featured' : 'services-priority-link'}">
+                <a href="${item.href}" class="${item.featured ? 'services-priority-featured' : `services-priority-link services-column-${item.column}${item.comingSoon ? ' services-coming-soon' : ''}`}" ${item.comingSoon ? 'aria-disabled="true" tabindex="-1"' : ''}>
                   ${item.featured ? '<img src="/positivetherapyfl/assets/images/team/1x1-pa-c-weight-loss-marie-claude-dubuc.webp" alt="" aria-hidden="true">' : ''}
                   <span>${item.label}</span>
-                  ${item.featured ? '<span class="services-priority-cta">Explore</span>' : '<span class="material-symbols-outlined services-priority-arrow" aria-hidden="true">arrow_forward</span>'}
+                  ${item.featured ? '<span class="services-priority-cta">Explore</span>' : item.comingSoon ? '' : '<span class="material-symbols-outlined services-priority-arrow" aria-hidden="true">arrow_forward</span>'}
                 </a>
               `).join('')}
             </div>
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (mobileServicesGrid) {
         mobileServicesGrid.className = 'grid grid-cols-1 gap-1 pl-2';
         mobileServicesGrid.innerHTML = serviceItems.map(item => `
-          <a href="${item.href}" class="${item.featured ? 'mobile-priority-weight-loss' : 'py-2 text-sm font-medium text-[#1A1C1D] hover:text-[#0A4357]'}">
+          <a href="${item.href}" class="${item.featured ? 'mobile-priority-weight-loss' : `py-2 text-sm font-medium text-[#1A1C1D] hover:text-[#0A4357]${item.comingSoon ? ' italic opacity-70 pointer-events-none' : ''}`}" ${item.comingSoon ? 'aria-disabled="true" tabindex="-1"' : ''}>
             ${item.featured ? '<span>Weight Loss GLP-1</span><span class="material-symbols-outlined text-base" aria-hidden="true">arrow_forward</span>' : item.label}
           </a>
         `).join('');
@@ -227,6 +227,22 @@ document.addEventListener('DOMContentLoaded', () => {
           line-height: 1.2;
           text-decoration: none;
           transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+        }
+
+        .services-column-left { grid-column: 1; }
+        .services-column-right { grid-column: 2; }
+
+        .services-column-left:nth-of-type(2), .services-column-right:nth-of-type(6) { grid-row: 2; }
+        .services-column-left:nth-of-type(3), .services-column-right:nth-of-type(7) { grid-row: 3; }
+        .services-column-left:nth-of-type(4), .services-column-right:nth-of-type(8) { grid-row: 4; }
+        .services-column-left:nth-of-type(5), .services-column-right:nth-of-type(9) { grid-row: 5; }
+
+        .services-coming-soon {
+          font-style: italic;
+          color: #6B5D3E !important;
+          opacity: 0.72;
+          cursor: default;
+          pointer-events: none;
         }
 
         .services-priority-link:hover,
