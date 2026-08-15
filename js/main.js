@@ -95,6 +95,70 @@ document.addEventListener('DOMContentLoaded', () => {
         link.setAttribute('data-featured-label', 'Featured');
       }
     });
+
+    if (!document.getElementById('featured-service-nav-styles')) {
+      const featuredServiceStyles = document.createElement('style');
+      featuredServiceStyles.id = 'featured-service-nav-styles';
+      featuredServiceStyles.textContent = `
+        @media (min-width: 640px) {
+          header a.featured-service-link {
+            position: relative !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            gap: 0.75rem !important;
+            min-height: 3.15rem !important;
+            padding: 0.72rem 0.95rem !important;
+            margin: 0.18rem 0 !important;
+            border: 1px solid rgba(10, 67, 87, 0.11) !important;
+            border-radius: 999px !important;
+            background: linear-gradient(90deg, rgba(224, 242, 241, 0.95), rgba(244, 239, 230, 0.82)) !important;
+            color: #0a4357 !important;
+            font-weight: 800 !important;
+            box-shadow: 0 6px 18px rgba(10, 67, 87, 0.06) !important;
+            transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, border-color 180ms ease !important;
+          }
+
+          header a.featured-service-link::after {
+            content: attr(data-featured-label);
+            flex: 0 0 auto;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 1.45rem;
+            padding: 0 0.55rem;
+            border-radius: 999px;
+            background: #0a4357;
+            color: #fff;
+            font-size: 0.57rem;
+            font-weight: 900;
+            letter-spacing: 0.11em;
+            text-transform: uppercase;
+            opacity: 0.92;
+          }
+
+          header a.featured-service-link:hover,
+          header a.featured-service-link:focus-visible {
+            transform: translateX(4px) !important;
+            border-color: rgba(10, 67, 87, 0.26) !important;
+            background: #e0f2f1 !important;
+            box-shadow: 0 12px 28px rgba(10, 67, 87, 0.12) !important;
+          }
+
+          header a:not(.featured-service-link):hover,
+          header a:not(.featured-service-link):focus-visible {
+            color: #0a4357;
+          }
+        }
+
+        @media (max-width: 639px) {
+          header a.featured-service-link::after {
+            content: none !important;
+          }
+        }
+      `;
+      document.head.appendChild(featuredServiceStyles);
+    }
   }
 
   // Mobile navigation drawer toggle
