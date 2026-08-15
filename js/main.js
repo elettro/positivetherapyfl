@@ -2,6 +2,75 @@
  * Positive Therapy FL - Main Shared Interactive Utilities
  */
 document.addEventListener('DOMContentLoaded', () => {
+  const PHONE_DISPLAY = '(954) 408-6684';
+  const PHONE_TEL = 'tel:+19544086684';
+
+  // Global phone-number update across every page.
+  document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+    link.setAttribute('href', PHONE_TEL);
+  });
+
+  const phonePatterns = [
+    /\(201\)\s*555-0123/g,
+    /201[.\-\s]555[.\-\s]0123/g
+  ];
+
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  const textNodes = [];
+  while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+  textNodes.forEach(node => {
+    let updated = node.nodeValue;
+    phonePatterns.forEach(pattern => {
+      updated = updated.replace(pattern, PHONE_DISPLAY);
+    });
+    if (updated !== node.nodeValue) node.nodeValue = updated;
+  });
+
+  // Add a global mobile-only consultation CTA directly below the primary header row.
+  const header = document.querySelector('header');
+  const primaryHeaderRow = header?.firstElementChild;
+
+  if (header && primaryHeaderRow && !header.querySelector('[data-mobile-call-cta]')) {
+    const mobileCallRow = document.createElement('div');
+    mobileCallRow.setAttribute('data-mobile-call-cta', '');
+    mobileCallRow.className = 'mobile-call-cta';
+    mobileCallRow.innerHTML = `
+      <a href="${PHONE_TEL}" aria-label="Book a free consultation by phone">
+        <span class="material-symbols-outlined" aria-hidden="true">call</span>
+        <span>Book Free Consultation</span>
+        <span class="mobile-call-number">${PHONE_DISPLAY}</span>
+      </a>
+    `;
+    primaryHeaderRow.insertAdjacentElement('afterend', mobileCallRow);
+
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    const updateMobileCallRow = () => {
+      const currentScrollY = window.scrollY;
+      const delta = currentScrollY - lastScrollY;
+
+      if (currentScrollY <= 8) {
+        mobileCallRow.classList.remove('is-hidden');
+      } else if (delta > 4) {
+        mobileCallRow.classList.add('is-hidden');
+      } else if (delta < -4) {
+        mobileCallRow.classList.remove('is-hidden');
+      }
+
+      lastScrollY = currentScrollY;
+      ticking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateMobileCallRow);
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+
   // Mobile navigation drawer toggle
   const menuButtons = document.querySelectorAll('[data-menu-toggle]');
   const mobileMenu = document.querySelector('[data-mobile-menu]');
