@@ -122,4 +122,32 @@ document.addEventListener('DOMContentLoaded', () => {
       span.textContent = 'Weight Loss - GLP-1';
     }
   });
+
+  // Mobile-only: keep the calendar icon directly after the
+  // "Request Your Confidential Match" text instead of at the far edge of the pill.
+  const centerConfidentialMatchIcon = () => {
+    if (!window.matchMedia('(max-width: 639px)').matches) return;
+
+    document.querySelectorAll('a, button').forEach(control => {
+      const label = control.textContent.replace(/\s+/g, ' ').trim().toLowerCase();
+      if (!label.includes('request your confidential match')) return;
+
+      control.style.display = 'inline-flex';
+      control.style.alignItems = 'center';
+      control.style.justifyContent = 'center';
+      control.style.gap = '0.5rem';
+
+      const icon = control.querySelector('.material-symbols-outlined');
+      if (icon) {
+        icon.style.position = 'static';
+        icon.style.marginLeft = '0';
+        icon.style.marginRight = '0';
+        icon.style.transform = 'none';
+        icon.style.flex = '0 0 auto';
+      }
+    });
+  };
+
+  centerConfidentialMatchIcon();
+  window.addEventListener('resize', centerConfidentialMatchIcon, { passive: true });
 });
