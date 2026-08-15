@@ -1,660 +1,138 @@
-/**
- * Positive Therapy FL - Serene Shore Design System Variables
- */
-:root {
-  /* Brand Colors */
-  --color-primary: #0a4357;
-  --color-primary-container: #2a5b6f;
-  --color-on-primary: #ffffff;
-  --color-on-primary-container: #a2d1e9;
+@import url("./variables-core.css");
 
-  --color-secondary: #6b5d3e;
-  --color-secondary-container: #f2ddb7;
-  --color-on-secondary: #ffffff;
-  --color-on-secondary-container: #706142;
-
-  --color-tertiary: #59360d;
-  --color-tertiary-container: #744d22;
-  
-  --color-background: #f9f9fb;
-  --color-surface: #f9f9fb;
-  --color-surface-dim: #d9dadc;
-  --color-surface-container: #edeeef;
-  --color-surface-container-low: #f3f3f5;
-  --color-surface-container-lowest: #ffffff;
-  --color-on-surface: #1a1c1d;
-  --color-on-surface-variant: #41484c;
-
-  --color-ocean-deep: #1B3A46;
-  --color-gulf-stream: #E0F2F1;
-  --color-sand-dune: #F4EFE6;
-  --color-sea-glass: #8BA888;
-  --color-coral-reef: #E67E6E;
-
-  --color-outline: #71787c;
-  --color-outline-variant: #c0c7cc;
-
-  /* Typography */
-  --font-display: 'Manrope', system-ui, -apple-system, sans-serif;
-  --font-headline: 'Manrope', system-ui, -apple-system, sans-serif;
-  --font-body: 'Work Sans', system-ui, -apple-system, sans-serif;
-
-  /* Spacing */
-  --unit: 8px;
-  --margin-desktop: 80px;
-  --margin-mobile: 20px;
-  --gutter: 24px;
-  --section-padding: 64px;
-
-  /* Border Radii */
-  --radius-sm: 0.25rem;
-  --radius-default: 0.5rem;
-  --radius-md: 0.75rem;
-  --radius-lg: 1rem;
-  --radius-xl: 1.5rem;
-  --radius-full: 9999px;
-}
-
-/* Increase only the upper-left global navigation logo by 12% on tablet/desktop.
- * Keep the navigation row, buttons, and other elements the same size.
- */
-header > div:first-child > a:first-child > img[src$="brand/logo.png"] {
-  transform: scale(1.12);
-  transform-origin: left center;
-  margin-right: 0.5rem;
-}
-
-.mobile-call-cta {
-  display: none;
-}
-
-/* Mobile header: persistent brand row + scroll-aware consultation row. */
-@media (max-width: 639px) {
-  header {
-    overflow: visible !important;
-  }
-
-  header > div:first-child {
-    height: 4.35rem !important;
-    padding-left: 0.65rem !important;
-    padding-right: 0.65rem !important;
-    gap: 0.45rem !important;
-    position: relative;
-    z-index: 3;
-  }
-
-  header > div:first-child > a:first-child {
-    flex: 1 1 auto !important;
-    min-width: 0 !important;
-    gap: 0.45rem !important;
-  }
-
-  header > div:first-child > a:first-child > img[src$="brand/logo.png"] {
-    display: block !important;
-    height: 2.2rem !important;
-    width: auto !important;
-    transform: none !important;
-    margin-right: 0 !important;
-    flex: 0 0 auto !important;
-  }
-
-  header > div:first-child > a:first-child > div {
-    min-width: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-  }
-
-  header > div:first-child > a:first-child > div > span:first-child {
-    font-size: 0.92rem !important;
-    line-height: 1.05 !important;
-    white-space: nowrap !important;
-  }
-
-  header > div:first-child > a:first-child > div > span:last-child {
-    display: block !important;
-    font-size: 0.52rem !important;
-    line-height: 1.05 !important;
-    letter-spacing: 0.055em !important;
-    white-space: nowrap !important;
-    margin-top: 0.15rem !important;
-  }
-
-  header > div:first-child > div:last-child {
-    flex: 0 0 auto !important;
-    gap: 0 !important;
-  }
-
-  header > div:first-child > div:last-child > a[href^="tel:"] {
-    display: none !important;
-  }
-
-  header > div:first-child > div:last-child > a:not([href^="tel:"]) {
-    display: none !important;
-  }
-
-  header > div:first-child > div:last-child > button[data-menu-toggle] {
-    flex: 0 0 auto !important;
-    width: 2.45rem !important;
-    height: 2.45rem !important;
-    padding: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-
-  header > div:first-child > div:last-child > button[data-menu-toggle] .material-symbols-outlined {
-    font-size: 1.45rem !important;
-  }
-
-  .mobile-call-cta {
-    display: block;
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-height: 3.15rem;
-    overflow: hidden;
-    background: #0A4357;
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 0 7px 18px rgba(10, 67, 87, 0.14);
-    transition: max-height 220ms ease, opacity 180ms ease, transform 220ms ease;
-  }
-
-  .mobile-call-cta > a {
-    min-height: 3.15rem;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.45rem;
-    padding: 0.65rem 0.75rem;
-    color: #fff;
-    font-family: var(--font-body);
-    font-size: 0.88rem;
-    font-weight: 800;
-    line-height: 1;
-    text-decoration: none;
-    white-space: nowrap;
-  }
-
-  .mobile-call-cta .material-symbols-outlined {
-    font-size: 1.15rem;
-  }
-
-  .mobile-call-cta .mobile-call-number {
-    font-size: 0.76rem;
-    font-weight: 600;
-    opacity: 0.88;
-  }
-
-  .mobile-call-cta.is-hidden {
-    max-height: 0;
-    opacity: 0;
-    transform: translateY(-100%);
-    pointer-events: none;
-  }
-}
-
-/* Homepage hero text panel.
- * Add a soft glass panel behind the left-side messaging so text stays readable
- * against the telehealth background photo.
- */
-body:has(img[src$="16x9-homepage-telemed-example-women.webp"]) main > section:first-of-type > div.relative.z-10 > div:first-child {
-  background: rgba(244, 239, 230, 0.78);
-  border: 1px solid rgba(255, 255, 255, 0.65);
-  border-radius: 2rem;
-  box-shadow: 0 20px 50px rgba(27, 58, 70, 0.14);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  padding: 1.5rem;
-}
-
-@media (min-width: 640px) {
-  body:has(img[src$="16x9-homepage-telemed-example-women.webp"]) main > section:first-of-type > div.relative.z-10 > div:first-child {
-    padding: 2rem;
-  }
-}
-
-/* Homepage desktop hero composition.
- * Keep the telehealth photo clear and move foreground content lower so both faces remain visible.
- */
-@media (min-width: 1024px) {
-  body:has(img[src$="16x9-homepage-telemed-example-women.webp"]) main > section:first-of-type {
-    align-items: flex-end !important;
-    padding-top: 20rem !important;
-    padding-bottom: 3.5rem !important;
-  }
-
-  body:has(img[src$="16x9-homepage-telemed-example-women.webp"]) main > section:first-of-type > div.absolute.inset-0 > div.absolute.inset-0 {
-    display: none !important;
-  }
-
-  body:has(img[src$="16x9-homepage-telemed-example-women.webp"]) img[src$="16x9-homepage-telemed-example-women.webp"] {
-    opacity: 1 !important;
-    object-position: center 42% !important;
-  }
-
-  body:has(img[src$="16x9-homepage-telemed-example-women.webp"]) main > section:first-of-type > div.relative.z-10 {
-    align-items: end !important;
-  }
-
-  body:has(img[src$="16x9-homepage-telemed-example-women.webp"]) main > section:first-of-type > div.relative.z-10 > div:first-child {
-    align-self: end !important;
-    max-width: 720px;
-    padding: 2.25rem 2.5rem;
-  }
-
-  body:has(img[src$="16x9-homepage-telemed-example-women.webp"]) main > section:first-of-type > div.relative.z-10 > div:nth-child(2) {
-    align-self: end !important;
-    margin-bottom: 0 !important;
-  }
-}
-
-/* Homepage care highlights replacing the old statistics strip. */
-.homepage-care-highlights {
-  background: linear-gradient(180deg, #f9f9fb 0%, #f4efe6 100%);
-  padding: 4.5rem 1.25rem;
-}
-
-.care-highlights-inner {
-  max-width: 1500px;
-  margin: 0 auto;
-}
-
-.care-highlights-heading {
-  max-width: 760px;
-  margin-bottom: 2rem;
-}
-
-.care-highlights-kicker {
-  display: inline-block;
-  margin-bottom: 0.75rem;
-  color: var(--color-primary);
-  font-family: var(--font-body);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-}
-
-.care-highlights-heading h2 {
-  margin: 0;
-  color: var(--color-ocean-deep);
-  font-family: var(--font-headline);
-  font-size: clamp(2rem, 3vw, 3.35rem);
-  font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-}
-
-.care-highlights-grid {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.care-highlight-card {
+/* Location page: elevated visit / directions card. */
+body:has(h2) section:has(h2.text-headline-md.font-headline-md.text-ocean-deep) > div.max-w-5xl {
   position: relative;
-  min-height: 250px;
-  padding: 1.5rem;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(10, 67, 87, 0.1);
-  border-radius: 1.35rem;
-  box-shadow: 0 10px 30px rgba(27, 58, 70, 0.06);
-  cursor: default;
-  outline: none;
-  transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease, border-color 220ms ease;
+  max-width: 1200px !important;
+  padding: clamp(1.5rem, 3vw, 2.6rem) !important;
+  gap: 1.5rem !important;
+  background:
+    radial-gradient(circle at 92% 15%, rgba(139, 168, 136, 0.18), transparent 26%),
+    linear-gradient(135deg, #ffffff 0%, #fbfaf7 58%, #f4efe6 100%) !important;
+  border: 1px solid rgba(10, 67, 87, 0.12);
+  border-radius: 2rem !important;
+  box-shadow: 0 22px 55px rgba(27, 58, 70, 0.12) !important;
 }
 
-.care-highlight-card::after {
+body:has(h2) section:has(h2.text-headline-md.font-headline-md.text-ocean-deep) > div.max-w-5xl::before {
   content: '';
   position: absolute;
-  left: 1.5rem;
-  right: 1.5rem;
-  bottom: 1.35rem;
-  height: 2px;
-  background: var(--color-coral-reef);
-  transform: scaleX(0.2);
-  transform-origin: left center;
-  opacity: 0.35;
-  transition: transform 220ms ease, opacity 220ms ease;
+  inset: 0 auto 0 0;
+  width: 7px;
+  background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-sea-glass) 100%);
 }
 
-.care-highlight-icon {
+body:has(h2) section:has(h2.text-headline-md.font-headline-md.text-ocean-deep) > div.max-w-5xl > div.flex {
+  flex: 1 1 auto;
+  gap: 1.15rem !important;
+  align-items: flex-start !important;
+}
+
+body:has(h2) section:has(h2.text-headline-md.font-headline-md.text-ocean-deep) > div.max-w-5xl > div.flex > span.material-symbols-outlined {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.7rem;
-  height: 2.7rem;
-  margin-bottom: 1.35rem;
-  border-radius: 999px;
-  background: var(--color-gulf-stream);
-  color: var(--color-primary);
-  font-size: 1.35rem;
-  transition: transform 220ms ease, background 220ms ease, color 220ms ease;
-}
-
-.care-highlight-card h3 {
-  margin: 0;
-  color: var(--color-ocean-deep);
-  font-family: var(--font-headline);
-  font-size: 1.05rem;
-  font-weight: 750;
-  line-height: 1.25;
-}
-
-.care-highlight-card p {
-  margin: 1rem 0 1.75rem;
-  color: var(--color-on-surface-variant);
-  font-family: var(--font-body);
-  font-size: 0.9rem;
-  line-height: 1.55;
-  opacity: 0.78;
-  transform: translateY(5px);
-  transition: opacity 220ms ease, transform 220ms ease;
-}
-
-.care-highlight-card:hover,
-.care-highlight-card:focus-visible {
-  transform: translateY(-8px);
-  background: #ffffff;
-  border-color: rgba(10, 67, 87, 0.24);
-  box-shadow: 0 22px 50px rgba(27, 58, 70, 0.14);
-}
-
-.care-highlight-card:hover::after,
-.care-highlight-card:focus-visible::after {
-  transform: scaleX(1);
-  opacity: 1;
-}
-
-.care-highlight-card:hover .care-highlight-icon,
-.care-highlight-card:focus-visible .care-highlight-icon {
-  transform: translateY(-2px) scale(1.08);
+  flex: 0 0 auto;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-top: 0 !important;
+  border-radius: 1rem;
   background: var(--color-primary);
-  color: #ffffff;
+  color: #fff !important;
+  box-shadow: 0 10px 22px rgba(10, 67, 87, 0.18);
+  font-size: 1.7rem !important;
 }
 
-.care-highlight-card:hover p,
-.care-highlight-card:focus-visible p {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@media (max-width: 1100px) {
-  .care-highlights-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .care-highlight-card:last-child {
-    grid-column: 1 / -1;
-    min-height: 190px;
-  }
-}
-
-@media (max-width: 639px) {
-  .homepage-care-highlights {
-    padding: 3.25rem 1rem;
-  }
-
-  .care-highlights-heading {
-    margin-bottom: 1.5rem;
-  }
-
-  .care-highlights-heading h2 {
-    font-size: 2rem;
-  }
-
-  .care-highlights-grid {
-    grid-template-columns: 1fr;
-    gap: 0.8rem;
-  }
-
-  .care-highlight-card,
-  .care-highlight-card:last-child {
-    grid-column: auto;
-    min-height: 0;
-    padding: 1.2rem 1.25rem 1.35rem;
-  }
-
-  .care-highlight-icon {
-    width: 2.4rem;
-    height: 2.4rem;
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
-  }
-
-  .care-highlight-card p {
-    margin-bottom: 1.2rem;
-    opacity: 1;
-    transform: none;
-  }
-}
-
-/* Homepage holistic wellness section: simplify the hierarchy, strengthen type,
- * and guarantee readable contrast over the dark image. */
-#about {
-  padding-top: 5rem !important;
-  padding-bottom: 5rem !important;
-}
-
-#about > div > div:first-child {
-  max-width: 900px !important;
-  margin-bottom: 2.75rem !important;
-}
-
-#about > div > div:first-child h2 {
-  font-size: clamp(2.4rem, 4vw, 4.5rem) !important;
-  line-height: 0.98 !important;
+body:has(h2) section:has(h2.text-headline-md.font-headline-md.text-ocean-deep) h2.text-headline-md.font-headline-md.text-ocean-deep {
+  margin-bottom: 0.6rem !important;
+  color: var(--color-ocean-deep) !important;
+  font-family: var(--font-headline) !important;
+  font-size: clamp(1.75rem, 2.6vw, 2.5rem) !important;
   font-weight: 800 !important;
-  letter-spacing: -0.045em !important;
-  margin-bottom: 1.1rem !important;
+  line-height: 1 !important;
+  letter-spacing: -0.035em !important;
 }
 
-#about > div > div:first-child p {
-  max-width: 820px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  font-size: clamp(1.05rem, 1.45vw, 1.3rem) !important;
+body:has(h2) section:has(h2.text-headline-md.font-headline-md.text-ocean-deep) h2.text-headline-md.font-headline-md.text-ocean-deep::before {
+  content: 'SOUTHWEST RANCHES SANCTUARY';
+  display: block;
+  margin-bottom: 0.55rem;
+  color: var(--color-secondary);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.14em;
+}
+
+body:has(h2) section:has(h2.text-headline-md.font-headline-md.text-ocean-deep) h2.text-headline-md.font-headline-md.text-ocean-deep + p {
+  color: #2E3132 !important;
+  font-family: var(--font-body) !important;
+  font-size: clamp(1rem, 1.3vw, 1.12rem) !important;
+  font-weight: 550 !important;
   line-height: 1.55 !important;
 }
 
-#about > div > div:nth-child(2) {
-  gap: 1.25rem !important;
+body:has(h2) section:has(h2.text-headline-md.font-headline-md.text-ocean-deep) h2.text-headline-md.font-headline-md.text-ocean-deep + p::after {
+  content: 'Private Offices  •  Animal-Assisted Therapy  •  Event Venue Coming Soon';
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 1rem;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid rgba(10, 67, 87, 0.1);
+  border-radius: 999px;
+  background: rgba(224, 242, 241, 0.72);
+  color: var(--color-primary);
+  font-size: 0.78rem;
+  font-weight: 750;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
 }
 
-#about > div > div:nth-child(2) > div {
-  border-radius: 2rem !important;
-}
-
-#about > div > div:nth-child(2) > div:first-child {
-  min-height: 430px;
-}
-
-#about > div > div:nth-child(2) > div:first-child > div:nth-of-type(1) {
-  background: linear-gradient(to top, rgba(10, 67, 87, 0.98) 0%, rgba(10, 67, 87, 0.72) 44%, rgba(10, 67, 87, 0.18) 100%) !important;
-}
-
-#about > div > div:nth-child(2) > div:first-child > div:last-child {
-  padding: clamp(1.5rem, 3vw, 3rem) !important;
-}
-
-#about > div > div:nth-child(2) > div:first-child span {
-  font-size: 0.78rem !important;
-  font-weight: 800 !important;
-  letter-spacing: 0.05em !important;
-}
-
-#about > div > div:nth-child(2) > div:first-child h3 {
-  color: #fff !important;
-  font-size: clamp(1.75rem, 2.4vw, 2.7rem) !important;
-  line-height: 1.05 !important;
-  font-weight: 800 !important;
-  letter-spacing: -0.03em !important;
-  margin-bottom: 0.75rem !important;
-}
-
-#about > div > div:nth-child(2) > div:first-child p {
-  color: rgba(255, 255, 255, 0.94) !important;
-  font-size: clamp(1rem, 1.25vw, 1.18rem) !important;
-  line-height: 1.5 !important;
-  font-weight: 500 !important;
-  max-width: 680px !important;
-}
-
-#about > div > div:nth-child(2) > div:nth-child(2) {
-  padding: clamp(1.75rem, 3vw, 3rem) !important;
-  justify-content: center !important;
-}
-
-#about > div > div:nth-child(2) > div:nth-child(2) h3 {
-  font-size: clamp(1.65rem, 2.1vw, 2.25rem) !important;
-  line-height: 1.05 !important;
-  font-weight: 800 !important;
-  letter-spacing: -0.03em !important;
-  margin-bottom: 1.35rem !important;
-}
-
-#about > div > div:nth-child(2) > div:nth-child(2) ul {
-  display: grid !important;
-  gap: 1rem !important;
-}
-
-#about > div > div:nth-child(2) > div:nth-child(2) li {
-  align-items: center !important;
-  gap: 0.8rem !important;
-}
-
-#about > div > div:nth-child(2) > div:nth-child(2) li > span:last-child {
-  font-size: clamp(1rem, 1.2vw, 1.15rem) !important;
-  line-height: 1.35 !important;
-  font-weight: 650 !important;
-  color: var(--color-ocean-deep) !important;
-}
-
-#about > div > div:nth-child(2) > div:nth-child(2) li > span:first-child {
-  font-size: 1.45rem !important;
-}
-
-@media (max-width: 639px) {
-  #about {
-    padding-top: 3.5rem !important;
-    padding-bottom: 3.5rem !important;
-  }
-
-  #about > div > div:first-child {
-    margin-bottom: 2rem !important;
-  }
-
-  #about > div > div:first-child h2 {
-    font-size: 2.35rem !important;
-  }
-
-  #about > div > div:nth-child(2) > div:first-child {
-    min-height: 390px;
-  }
-}
-
-/* Location page hero: use the same strong glass-panel visual language as the homepage hero. */
-body:has(img[alt="Our Sanctuary in Southwest Ranches"]) section:has(img[alt="Our Sanctuary in Southwest Ranches"]) > div.relative.z-10 {
-  max-width: 820px !important;
-  padding: clamp(1.75rem, 4vw, 3.25rem) !important;
-  background: rgba(244, 239, 230, 0.88) !important;
-  border: 1px solid rgba(255, 255, 255, 0.72) !important;
-  border-radius: 2rem !important;
-  box-shadow: 0 24px 60px rgba(27, 58, 70, 0.22) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-}
-
-body:has(img[alt="Our Sanctuary in Southwest Ranches"]) section:has(img[alt="Our Sanctuary in Southwest Ranches"]) > div.relative.z-10 h1 {
-  color: var(--color-ocean-deep) !important;
-  font-family: var(--font-headline) !important;
-  font-size: clamp(2.45rem, 5vw, 5rem) !important;
-  font-weight: 800 !important;
-  line-height: 0.98 !important;
-  letter-spacing: -0.045em !important;
-  margin-bottom: 1rem !important;
-}
-
-body:has(img[alt="Our Sanctuary in Southwest Ranches"]) section:has(img[alt="Our Sanctuary in Southwest Ranches"]) > div.relative.z-10 p {
-  color: #2E3132 !important;
+body:has(h2) section:has(h2.text-headline-md.font-headline-md.text-ocean-deep) > div.max-w-5xl > button {
+  position: relative;
+  flex: 0 0 auto;
+  min-width: 230px;
+  min-height: 4.25rem;
+  padding: 0.95rem 1.4rem !important;
+  border-radius: 1.25rem !important;
+  background: var(--color-primary) !important;
+  box-shadow: 0 14px 30px rgba(10, 67, 87, 0.2) !important;
   font-family: var(--font-body) !important;
-  font-size: clamp(1.05rem, 1.55vw, 1.3rem) !important;
-  font-weight: 500 !important;
-  line-height: 1.5 !important;
-  max-width: 680px !important;
+  font-size: 1rem !important;
+  font-weight: 800 !important;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease !important;
 }
 
-@media (max-width: 639px) {
-  body:has(img[alt="Our Sanctuary in Southwest Ranches"]) section:has(img[alt="Our Sanctuary in Southwest Ranches"]) > div.relative.z-10 {
-    padding: 1.5rem !important;
+body:has(h2) section:has(h2.text-headline-md.font-headline-md.text-ocean-deep) > div.max-w-5xl > button:hover,
+body:has(h2) section:has(h2.text-headline-md.font-headline-md.text-ocean-deep) > div.max-w-5xl > button:focus-visible {
+  transform: translateY(-3px) !important;
+  background: var(--color-ocean-deep) !important;
+  box-shadow: 0 18px 38px rgba(10, 67, 87, 0.26) !important;
+}
+
+@media (max-width: 767px) {
+  body:has(h2) section:has(h2.text-headline-md.font-headline-md.text-ocean-deep) > div.max-w-5xl {
+    align-items: stretch !important;
+    padding: 1.35rem !important;
     border-radius: 1.5rem !important;
   }
 
-  body:has(img[alt="Our Sanctuary in Southwest Ranches"]) section:has(img[alt="Our Sanctuary in Southwest Ranches"]) > div.relative.z-10 h1 {
-    font-size: 2.5rem !important;
-  }
-}
-
-/* Homepage Areas of Focus: give the section heading real visual hierarchy without altering the filters or cards. */
-body:has(img[src$="16x9-homepage-telemed-example-women.webp"]) div:has(> h2.font-headline-lg.md\:font-display-lg.text-headline-lg-mobile.md\:text-display-lg.text-ocean-deep) {
-  max-width: 900px !important;
-}
-
-body:has(img[src$="16x9-homepage-telemed-example-women.webp"]) h2.font-headline-lg.md\:font-display-lg.text-headline-lg-mobile.md\:text-display-lg.text-ocean-deep {
-  color: var(--color-ocean-deep) !important;
-  font-family: var(--font-headline) !important;
-  font-size: clamp(2.8rem, 4.7vw, 5.1rem) !important;
-  font-weight: 800 !important;
-  line-height: 0.96 !important;
-  letter-spacing: -0.05em !important;
-  margin-bottom: 1rem !important;
-}
-
-body:has(img[src$="16x9-homepage-telemed-example-women.webp"]) div:has(> h2.font-headline-lg.md\:font-display-lg.text-headline-lg-mobile.md\:text-display-lg.text-ocean-deep) > p {
-  max-width: 820px !important;
-  color: var(--color-on-surface-variant) !important;
-  font-family: var(--font-body) !important;
-  font-size: clamp(1.15rem, 1.55vw, 1.4rem) !important;
-  font-weight: 550 !important;
-  line-height: 1.5 !important;
-  letter-spacing: -0.01em !important;
-}
-
-@media (max-width: 639px) {
-  body:has(img[src$="16x9-homepage-telemed-example-women.webp"]) h2.font-headline-lg.md\:font-display-lg.text-headline-lg-mobile.md\:text-display-lg.text-ocean-deep {
-    font-size: 2.55rem !important;
-    line-height: 1 !important;
+  body:has(h2) section:has(h2.text-headline-md.font-headline-md.text-ocean-deep) > div.max-w-5xl > div.flex > span.material-symbols-outlined {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.9rem;
+    font-size: 1.45rem !important;
   }
 
-  body:has(img[src$="16x9-homepage-telemed-example-women.webp"]) div:has(> h2.font-headline-lg.md\:font-display-lg.text-headline-lg-mobile.md\:text-display-lg.text-ocean-deep) > p {
-    font-size: 1.08rem !important;
-    line-height: 1.48 !important;
+  body:has(h2) section:has(h2.text-headline-md.font-headline-md.text-ocean-deep) h2.text-headline-md.font-headline-md.text-ocean-deep + p::after {
+    border-radius: 1rem;
   }
-}
 
-/* Location hero messaging: make the West Broward value clear while keeping the existing visual treatment. */
-body:has(img[alt="Our Sanctuary in Southwest Ranches"]) section:has(img[alt="Our Sanctuary in Southwest Ranches"]) > div.relative.z-10 p {
-  font-size: 0 !important;
-  line-height: 0 !important;
-}
-
-body:has(img[alt="Our Sanctuary in Southwest Ranches"]) section:has(img[alt="Our Sanctuary in Southwest Ranches"]) > div.relative.z-10 p::before {
-  content: "Private offices, animal-assisted therapy, and our coming-soon wedding venue, all on one peaceful Southwest Ranches property.\A\A A convenient west-side option for Weston, Davie, Cooper City, Pembroke Pines, Miramar and surrounding communities, without the drive to Fort Lauderdale or Miami.";
-  display: block;
-  white-space: pre-line;
-  color: #2E3132;
-  font-family: var(--font-body);
-  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
-  font-weight: 550;
-  line-height: 1.5;
-  max-width: 720px;
-}
-
-@media (max-width: 639px) {
-  body:has(img[alt="Our Sanctuary in Southwest Ranches"]) section:has(img[alt="Our Sanctuary in Southwest Ranches"]) > div.relative.z-10 p::before {
-    font-size: 1rem;
-    line-height: 1.48;
+  body:has(h2) section:has(h2.text-headline-md.font-headline-md.text-ocean-deep) > div.max-w-5xl > button {
+    width: 100%;
+    min-width: 0;
   }
 }
