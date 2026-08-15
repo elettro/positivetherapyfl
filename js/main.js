@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (normalized === 'weight loss') {
-        link.classList.add('featured-service-link');
+        link.classList.add('featured-service-link', 'weight-loss-featured-photo');
         link.setAttribute('data-featured-label', 'Featured');
       }
     });
@@ -137,11 +137,18 @@ document.addEventListener('DOMContentLoaded', () => {
             opacity: 0.92;
           }
 
+          header a.weight-loss-featured-photo {
+            background-image: url('/positivetherapyfl/assets/images/weight-loss-pa-c-v1.png'), linear-gradient(90deg, rgba(224, 242, 241, 0.95), rgba(244, 239, 230, 0.82)) !important;
+            background-repeat: no-repeat, no-repeat !important;
+            background-size: 34px 42px, 100% 100% !important;
+            background-position: 58% center, center !important;
+          }
+
           header a.featured-service-link:hover,
           header a.featured-service-link:focus-visible {
             transform: translateX(4px) !important;
             border-color: rgba(10, 67, 87, 0.26) !important;
-            background: #e0f2f1 !important;
+            background-color: #e0f2f1 !important;
             box-shadow: 0 12px 28px rgba(10, 67, 87, 0.12) !important;
           }
 
