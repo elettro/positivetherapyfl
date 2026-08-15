@@ -591,17 +591,17 @@ document.addEventListener('DOMContentLoaded', () => {
     startOfficeCarousel();
   }
 
-  // Location page: position the Event Barn as the perfect wedding venue.
+  // Location page: position the Event Barn as the perfect wedding venue while retaining its other uses.
   const eventBarnHeading = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.trim() === 'Event Barn');
   if (eventBarnHeading) {
     const eventBarnCard = eventBarnHeading.closest('.bg-white.rounded-2xl');
     const eventBarnCopy = eventBarnHeading.nextElementSibling;
     eventBarnHeading.textContent = 'Perfect Wedding Venue';
     if (eventBarnCopy) {
-      eventBarnCopy.textContent = 'Host your wedding ceremony and reception on the same peaceful, spacious Southwest Ranches property, giving you room to celebrate together from the first moment through the last dance.';
+      eventBarnCopy.textContent = 'Wedding ceremony and reception on one peaceful, spacious property. Also ideal for wellness workshops, community gatherings, and mindful events.';
     }
     if (eventBarnCard) {
-      eventBarnCard.setAttribute('aria-label', 'Perfect wedding venue for ceremony and reception on one spacious property');
+      eventBarnCard.setAttribute('aria-label', 'Perfect wedding venue for ceremony and reception, wellness workshops, community gatherings, and mindful events');
     }
   }
 });
