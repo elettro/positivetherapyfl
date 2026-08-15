@@ -55,12 +55,13 @@
   --radius-full: 9999px;
 }
 
-/* Increase only the upper-left global navigation logo by 20%.
- * Keep the navigation row, text, buttons, and spacing dimensions unchanged.
+/* Increase only the upper-left global navigation logo by 12%.
+ * Keep the navigation row, buttons, and other elements the same size.
  */
 header > div:first-child > a:first-child > img[src$="brand/logo.png"] {
-  transform: scale(1.2);
+  transform: scale(1.12);
   transform-origin: left center;
+  margin-right: 0.5rem;
 }
 
 /* Homepage hero text panel.
