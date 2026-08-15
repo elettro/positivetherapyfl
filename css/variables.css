@@ -633,3 +633,28 @@ body:has(img[src$="16x9-homepage-telemed-example-women.webp"]) div:has(> h2.font
     line-height: 1.48 !important;
   }
 }
+
+/* Location hero messaging: make the West Broward value clear while keeping the existing visual treatment. */
+body:has(img[alt="Our Sanctuary in Southwest Ranches"]) section:has(img[alt="Our Sanctuary in Southwest Ranches"]) > div.relative.z-10 p {
+  font-size: 0 !important;
+  line-height: 0 !important;
+}
+
+body:has(img[alt="Our Sanctuary in Southwest Ranches"]) section:has(img[alt="Our Sanctuary in Southwest Ranches"]) > div.relative.z-10 p::before {
+  content: "Private offices, animal-assisted therapy, and our coming-soon wedding venue, all on one peaceful Southwest Ranches property.\A\A A convenient west-side option for Weston, Davie, Cooper City, Pembroke Pines, Miramar and surrounding communities, without the drive to Fort Lauderdale or Miami.";
+  display: block;
+  white-space: pre-line;
+  color: #2E3132;
+  font-family: var(--font-body);
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  font-weight: 550;
+  line-height: 1.5;
+  max-width: 720px;
+}
+
+@media (max-width: 639px) {
+  body:has(img[alt="Our Sanctuary in Southwest Ranches"]) section:has(img[alt="Our Sanctuary in Southwest Ranches"]) > div.relative.z-10 p::before {
+    font-size: 1rem;
+    line-height: 1.48;
+  }
+}
