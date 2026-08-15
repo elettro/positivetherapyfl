@@ -55,6 +55,14 @@
   --radius-full: 9999px;
 }
 
+/* Increase only the upper-left global navigation logo by 20%.
+ * Keep the navigation row, text, buttons, and spacing dimensions unchanged.
+ */
+header > div:first-child > a:first-child > img[src$="brand/logo.png"] {
+  transform: scale(1.2);
+  transform-origin: left center;
+}
+
 /* Homepage hero text panel.
  * Add a soft glass panel behind the left-side messaging so text stays readable
  * against the telehealth background photo.
