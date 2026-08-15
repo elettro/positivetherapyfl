@@ -164,11 +164,39 @@ document.addEventListener('DOMContentLoaded', () => {
   // Mobile navigation drawer toggle
   const menuButtons = document.querySelectorAll('[data-menu-toggle]');
   const mobileMenu = document.querySelector('[data-mobile-menu]');
+
+  // Mobile only: make the open navigation itself finger-scrollable so every
+  // menu item remains reachable on short phone screens.
+  if (mobileMenu) {
+    const enableMobileMenuScroll = () => {
+      if (!window.matchMedia('(max-width: 639px)').matches) {
+        mobileMenu.style.maxHeight = '';
+        mobileMenu.style.overflowY = '';
+        mobileMenu.style.webkitOverflowScrolling = '';
+        mobileMenu.style.overscrollBehavior = '';
+        mobileMenu.style.touchAction = '';
+        return;
+      }
+
+      mobileMenu.style.maxHeight = 'calc(100dvh - 4.35rem)';
+      mobileMenu.style.overflowY = 'auto';
+      mobileMenu.style.overflowX = 'hidden';
+      mobileMenu.style.webkitOverflowScrolling = 'touch';
+      mobileMenu.style.overscrollBehavior = 'contain';
+      mobileMenu.style.touchAction = 'pan-y';
+    };
+
+    enableMobileMenuScroll();
+    window.addEventListener('resize', enableMobileMenuScroll, { passive: true });
+  }
   
   if (menuButtons.length && mobileMenu) {
     menuButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         mobileMenu.classList.toggle('hidden');
+        if (!mobileMenu.classList.contains('hidden')) {
+          mobileMenu.scrollTop = 0;
+        }
       });
     });
   }
