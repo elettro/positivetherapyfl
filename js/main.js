@@ -138,9 +138,9 @@ document.addEventListener('DOMContentLoaded', () => {
           }
 
           header a.weight-loss-featured-photo {
-            background-image: url('/positivetherapyfl/assets/images/weight-loss-pa-c-v1.png'), linear-gradient(90deg, rgba(224, 242, 241, 0.95), rgba(244, 239, 230, 0.82)) !important;
+            background-image: url('/positivetherapyfl/assets/images/team/1x1-pa-c-weight-loss-marie-claude-dubuc.webp'), linear-gradient(90deg, rgba(224, 242, 241, 0.95), rgba(244, 239, 230, 0.82)) !important;
             background-repeat: no-repeat, no-repeat !important;
-            background-size: 34px 42px, 100% 100% !important;
+            background-size: 38px 38px, 100% 100% !important;
             background-position: 58% center, center !important;
           }
 
