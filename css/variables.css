@@ -249,3 +249,184 @@ body:has(img[src$="16x9-homepage-telemed-example-women.webp"]) main > section:fi
     margin-bottom: 0 !important;
   }
 }
+
+/* Homepage care highlights replacing the old statistics strip. */
+.homepage-care-highlights {
+  background: linear-gradient(180deg, #f9f9fb 0%, #f4efe6 100%);
+  padding: 4.5rem 1.25rem;
+}
+
+.care-highlights-inner {
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.care-highlights-heading {
+  max-width: 760px;
+  margin-bottom: 2rem;
+}
+
+.care-highlights-kicker {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  color: var(--color-primary);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.care-highlights-heading h2 {
+  margin: 0;
+  color: var(--color-ocean-deep);
+  font-family: var(--font-headline);
+  font-size: clamp(2rem, 3vw, 3.35rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.care-highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.care-highlight-card {
+  position: relative;
+  min-height: 250px;
+  padding: 1.5rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(10, 67, 87, 0.1);
+  border-radius: 1.35rem;
+  box-shadow: 0 10px 30px rgba(27, 58, 70, 0.06);
+  cursor: default;
+  outline: none;
+  transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease, border-color 220ms ease;
+}
+
+.care-highlight-card::after {
+  content: '';
+  position: absolute;
+  left: 1.5rem;
+  right: 1.5rem;
+  bottom: 1.35rem;
+  height: 2px;
+  background: var(--color-coral-reef);
+  transform: scaleX(0.2);
+  transform-origin: left center;
+  opacity: 0.35;
+  transition: transform 220ms ease, opacity 220ms ease;
+}
+
+.care-highlight-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.7rem;
+  height: 2.7rem;
+  margin-bottom: 1.35rem;
+  border-radius: 999px;
+  background: var(--color-gulf-stream);
+  color: var(--color-primary);
+  font-size: 1.35rem;
+  transition: transform 220ms ease, background 220ms ease, color 220ms ease;
+}
+
+.care-highlight-card h3 {
+  margin: 0;
+  color: var(--color-ocean-deep);
+  font-family: var(--font-headline);
+  font-size: 1.05rem;
+  font-weight: 750;
+  line-height: 1.25;
+}
+
+.care-highlight-card p {
+  margin: 1rem 0 1.75rem;
+  color: var(--color-on-surface-variant);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  opacity: 0.78;
+  transform: translateY(5px);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.care-highlight-card:hover,
+.care-highlight-card:focus-visible {
+  transform: translateY(-8px);
+  background: #ffffff;
+  border-color: rgba(10, 67, 87, 0.24);
+  box-shadow: 0 22px 50px rgba(27, 58, 70, 0.14);
+}
+
+.care-highlight-card:hover::after,
+.care-highlight-card:focus-visible::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.care-highlight-card:hover .care-highlight-icon,
+.care-highlight-card:focus-visible .care-highlight-icon {
+  transform: translateY(-2px) scale(1.08);
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+.care-highlight-card:hover p,
+.care-highlight-card:focus-visible p {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 1100px) {
+  .care-highlights-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .care-highlight-card:last-child {
+    grid-column: 1 / -1;
+    min-height: 190px;
+  }
+}
+
+@media (max-width: 639px) {
+  .homepage-care-highlights {
+    padding: 3.25rem 1rem;
+  }
+
+  .care-highlights-heading {
+    margin-bottom: 1.5rem;
+  }
+
+  .care-highlights-heading h2 {
+    font-size: 2rem;
+  }
+
+  .care-highlights-grid {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .care-highlight-card,
+  .care-highlight-card:last-child {
+    grid-column: auto;
+    min-height: 0;
+    padding: 1.2rem 1.25rem 1.35rem;
+  }
+
+  .care-highlight-icon {
+    width: 2.4rem;
+    height: 2.4rem;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+
+  .care-highlight-card p {
+    margin-bottom: 1.2rem;
+    opacity: 1;
+    transform: none;
+  }
+}
