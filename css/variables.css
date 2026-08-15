@@ -55,13 +55,64 @@
   --radius-full: 9999px;
 }
 
-/* Increase only the upper-left global navigation logo by 12%.
+/* Increase only the upper-left global navigation logo by 12% on tablet/desktop.
  * Keep the navigation row, buttons, and other elements the same size.
  */
 header > div:first-child > a:first-child > img[src$="brand/logo.png"] {
   transform: scale(1.12);
   transform-origin: left center;
   margin-right: 0.5rem;
+}
+
+/* Mobile header: fit logo + brand name + hamburger on one row. */
+@media (max-width: 639px) {
+  header > div:first-child {
+    height: 4.5rem !important;
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+    gap: 0.5rem !important;
+  }
+
+  header > div:first-child > a:first-child {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    gap: 0.5rem !important;
+  }
+
+  header > div:first-child > a:first-child > img[src$="brand/logo.png"] {
+    height: 2.75rem !important;
+    width: auto !important;
+    transform: scale(1) !important;
+    margin-right: 0.125rem !important;
+  }
+
+  header > div:first-child > a:first-child > div {
+    min-width: 0 !important;
+  }
+
+  header > div:first-child > a:first-child > div > span:first-child {
+    font-size: 1rem !important;
+    line-height: 1.1 !important;
+    white-space: nowrap !important;
+  }
+
+  header > div:first-child > a:first-child > div > span:last-child {
+    display: none !important;
+  }
+
+  header > div:first-child > div:last-child {
+    flex: 0 0 auto !important;
+    gap: 0.375rem !important;
+  }
+
+  header > div:first-child > div:last-child > a[href^="tel:"] {
+    display: none !important;
+  }
+
+  header > div:first-child > div:last-child > button[data-menu-toggle] {
+    flex: 0 0 auto !important;
+    padding: 0.625rem !important;
+  }
 }
 
 /* Homepage hero text panel.
