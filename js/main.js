@@ -71,6 +71,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
+  // Global Services navigation: give the three priority services a consistent
+  // featured treatment without muting or shrinking any of the other services.
+  if (header) {
+    header.querySelectorAll('a').forEach(link => {
+      const label = link.textContent.replace(/\s+/g, ' ').trim();
+      const normalized = label.toLowerCase();
+
+      if (normalized === 'individual counseling' || normalized === 'individual therapy') {
+        link.textContent = 'Individual Therapy';
+        link.classList.add('featured-service-link');
+        link.setAttribute('data-featured-label', 'Featured');
+      }
+
+      if (normalized === 'couples counseling' || normalized === 'couples & family therapy' || normalized === 'couples and family therapy') {
+        link.textContent = 'Couples & Family Therapy';
+        link.classList.add('featured-service-link');
+        link.setAttribute('data-featured-label', 'Featured');
+      }
+
+      if (normalized === 'weight loss') {
+        link.classList.add('featured-service-link');
+        link.setAttribute('data-featured-label', 'Featured');
+      }
+    });
+  }
+
   // Mobile navigation drawer toggle
   const menuButtons = document.querySelectorAll('[data-menu-toggle]');
   const mobileMenu = document.querySelector('[data-mobile-menu]');
