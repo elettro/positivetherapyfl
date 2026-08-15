@@ -554,3 +554,45 @@ body:has(img[src$="16x9-homepage-telemed-example-women.webp"]) main > section:fi
     min-height: 390px;
   }
 }
+
+/* Location page hero: use the same strong glass-panel visual language as the homepage hero. */
+body:has(img[alt="Our Sanctuary in Southwest Ranches"]) section:has(img[alt="Our Sanctuary in Southwest Ranches"]) > div.relative.z-10 {
+  max-width: 820px !important;
+  padding: clamp(1.75rem, 4vw, 3.25rem) !important;
+  background: rgba(244, 239, 230, 0.88) !important;
+  border: 1px solid rgba(255, 255, 255, 0.72) !important;
+  border-radius: 2rem !important;
+  box-shadow: 0 24px 60px rgba(27, 58, 70, 0.22) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+body:has(img[alt="Our Sanctuary in Southwest Ranches"]) section:has(img[alt="Our Sanctuary in Southwest Ranches"]) > div.relative.z-10 h1 {
+  color: var(--color-ocean-deep) !important;
+  font-family: var(--font-headline) !important;
+  font-size: clamp(2.45rem, 5vw, 5rem) !important;
+  font-weight: 800 !important;
+  line-height: 0.98 !important;
+  letter-spacing: -0.045em !important;
+  margin-bottom: 1rem !important;
+}
+
+body:has(img[alt="Our Sanctuary in Southwest Ranches"]) section:has(img[alt="Our Sanctuary in Southwest Ranches"]) > div.relative.z-10 p {
+  color: #2E3132 !important;
+  font-family: var(--font-body) !important;
+  font-size: clamp(1.05rem, 1.55vw, 1.3rem) !important;
+  font-weight: 500 !important;
+  line-height: 1.5 !important;
+  max-width: 680px !important;
+}
+
+@media (max-width: 639px) {
+  body:has(img[alt="Our Sanctuary in Southwest Ranches"]) section:has(img[alt="Our Sanctuary in Southwest Ranches"]) > div.relative.z-10 {
+    padding: 1.5rem !important;
+    border-radius: 1.5rem !important;
+  }
+
+  body:has(img[alt="Our Sanctuary in Southwest Ranches"]) section:has(img[alt="Our Sanctuary in Southwest Ranches"]) > div.relative.z-10 h1 {
+    font-size: 2.5rem !important;
+  }
+}
