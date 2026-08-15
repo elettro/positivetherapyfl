@@ -161,4 +161,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
   centerConfidentialMatchIcon();
   window.addEventListener('resize', centerConfidentialMatchIcon, { passive: true });
+
+  // Homepage: replace the old 15+ / 100% / 5.0 stats strip with an interactive
+  // five-point care overview. This deliberately uses a card composition rather
+  // than retaining the visual language of the removed statistics row.
+  if (document.querySelector('img[src$="16x9-homepage-telemed-example-women.webp"]')) {
+    const oldStatsSection = Array.from(document.querySelectorAll('section, div')).find(element => {
+      const text = element.textContent.replace(/\s+/g, ' ').toUpperCase();
+      return text.includes('YEARS EXPERIENCE') &&
+             text.includes('ONLINE FLEXIBILITY') &&
+             text.includes('PATIENT RATING') &&
+             element.querySelectorAll('*').length < 80;
+    });
+
+    if (oldStatsSection) {
+      oldStatsSection.className = 'homepage-care-highlights';
+      oldStatsSection.innerHTML = `
+        <div class="care-highlights-inner">
+          <div class="care-highlights-heading">
+            <span class="care-highlights-kicker">START HERE</span>
+            <h2>Support You Can Feel Good About Starting</h2>
+          </div>
+          <div class="care-highlights-grid" role="list">
+            <article class="care-highlight-card" role="listitem" tabindex="0">
+              <span class="material-symbols-outlined care-highlight-icon" aria-hidden="true">favorite</span>
+              <h3>Individual, Couples &amp; Family Therapy</h3>
+              <p>Personalized support for relationships, life transitions, stress and emotional wellbeing.</p>
+            </article>
+            <article class="care-highlight-card" role="listitem" tabindex="0">
+              <span class="material-symbols-outlined care-highlight-icon" aria-hidden="true">family_restroom</span>
+              <h3>Teen &amp; Maternal Mental Wellness Support</h3>
+              <p>Focused care for adolescents, new mothers and the challenges unique to each stage.</p>
+            </article>
+            <article class="care-highlight-card" role="listitem" tabindex="0">
+              <span class="material-symbols-outlined care-highlight-icon" aria-hidden="true">monitor_weight</span>
+              <h3>GLP-1 Weight Loss Programs</h3>
+              <p>Whole-person weight support designed to connect medical guidance with sustainable change.</p>
+            </article>
+            <article class="care-highlight-card" role="listitem" tabindex="0">
+              <span class="material-symbols-outlined care-highlight-icon" aria-hidden="true">neurology</span>
+              <h3>ADHD &amp; Autism Evaluation Services</h3>
+              <p>Clear, thoughtful evaluation and consultation pathways for greater understanding and direction.</p>
+            </article>
+            <article class="care-highlight-card" role="listitem" tabindex="0">
+              <span class="material-symbols-outlined care-highlight-icon" aria-hidden="true">devices</span>
+              <h3>Telehealth and In-Person Care</h3>
+              <p>Flexible ways to receive care across Florida, with in-person options when they fit your needs.</p>
+            </article>
+          </div>
+        </div>
+      `;
+    }
+  }
 });
