@@ -123,6 +123,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Homepage only: rename "Book a Consultation" to "Request Appointment"
+  // and keep the label on one line.
+  if (document.querySelector('img[src$="16x9-homepage-telemed-example-women.webp"]')) {
+    document.querySelectorAll('a, button, h1, h2, h3, h4, span, p').forEach(element => {
+      if (element.textContent.trim() === 'Book a Consultation') {
+        element.textContent = 'Request Appointment';
+        element.style.whiteSpace = 'nowrap';
+      }
+    });
+  }
+
   // Mobile-only: keep the calendar icon directly after the
   // "Request Your Confidential Match" text instead of at the far edge of the pill.
   const centerConfidentialMatchIcon = () => {
