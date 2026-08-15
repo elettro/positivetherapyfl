@@ -454,6 +454,161 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Homepage: insert a full-width clickable Location feature between the care cards
+  // and the Holistic Approach section.
+  if (document.querySelector('img[src$="16x9-homepage-telemed-example-women.webp"]')) {
+    const holisticSection = document.getElementById('about');
+    if (holisticSection && !document.querySelector('[data-home-location-feature]')) {
+      const locationFeature = document.createElement('section');
+      locationFeature.setAttribute('data-home-location-feature', '');
+      locationFeature.className = 'homepage-location-feature';
+      locationFeature.innerHTML = `
+        <a href="/positivetherapyfl/location/" class="homepage-location-link" aria-label="Explore the Positive Therapy FL location in Southwest Ranches">
+          <div class="homepage-location-heading">
+            <span class="homepage-location-kicker">SOUTHWEST RANCHES, FL</span>
+            <h2>Location</h2>
+            <span class="homepage-location-cta">Explore Our Location <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></span>
+          </div>
+          <div class="homepage-location-image-wrap">
+            <img src="/positivetherapyfl/assets/images/location/map-set-v1-west-south-florida-21x9.png" alt="South Florida map showing Positive Therapy FL Offices and Sanctuary in Southwest Ranches">
+          </div>
+        </a>
+      `;
+      holisticSection.insertAdjacentElement('beforebegin', locationFeature);
+
+      if (!document.getElementById('homepage-location-feature-styles')) {
+        const locationStyles = document.createElement('style');
+        locationStyles.id = 'homepage-location-feature-styles';
+        locationStyles.textContent = `
+          .homepage-location-feature {
+            padding: 4.75rem 1.25rem;
+            background: #F4EFE6;
+          }
+
+          .homepage-location-link {
+            display: block;
+            max-width: 1500px;
+            margin: 0 auto;
+            color: inherit;
+            text-decoration: none;
+          }
+
+          .homepage-location-heading {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: end;
+            gap: 0.7rem 1.5rem;
+            margin-bottom: 1.5rem;
+          }
+
+          .homepage-location-kicker {
+            grid-column: 1 / -1;
+            color: #6B5D3E;
+            font-family: var(--font-body);
+            font-size: 0.74rem;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+          }
+
+          .homepage-location-heading h2 {
+            margin: 0;
+            color: #1B3A46;
+            font-family: var(--font-headline);
+            font-size: clamp(2.8rem, 5vw, 5.4rem);
+            font-weight: 800;
+            line-height: 0.95;
+            letter-spacing: -0.05em;
+          }
+
+          .homepage-location-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding-bottom: 0.35rem;
+            color: #0A4357;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 800;
+          }
+
+          .homepage-location-cta .material-symbols-outlined {
+            font-size: 1.1rem;
+            transition: transform 180ms ease;
+          }
+
+          .homepage-location-image-wrap {
+            position: relative;
+            overflow: hidden;
+            border-radius: 2rem;
+            border: 1px solid rgba(10, 67, 87, 0.12);
+            box-shadow: 0 18px 45px rgba(27, 58, 70, 0.12);
+            background: #fff;
+            transition: transform 220ms ease, box-shadow 220ms ease;
+          }
+
+          .homepage-location-image-wrap::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.28);
+          }
+
+          .homepage-location-image-wrap img {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 21 / 9;
+            object-fit: cover;
+            transition: transform 500ms ease;
+          }
+
+          .homepage-location-link:hover .homepage-location-image-wrap,
+          .homepage-location-link:focus-visible .homepage-location-image-wrap {
+            transform: translateY(-5px);
+            box-shadow: 0 28px 60px rgba(27, 58, 70, 0.18);
+          }
+
+          .homepage-location-link:hover .homepage-location-image-wrap img,
+          .homepage-location-link:focus-visible .homepage-location-image-wrap img {
+            transform: scale(1.015);
+          }
+
+          .homepage-location-link:hover .homepage-location-cta .material-symbols-outlined,
+          .homepage-location-link:focus-visible .homepage-location-cta .material-symbols-outlined {
+            transform: translateX(4px);
+          }
+
+          @media (max-width: 639px) {
+            .homepage-location-feature {
+              padding: 3.25rem 1rem;
+            }
+
+            .homepage-location-heading {
+              grid-template-columns: 1fr;
+              gap: 0.55rem;
+              margin-bottom: 1.1rem;
+            }
+
+            .homepage-location-heading h2 {
+              font-size: 2.75rem;
+            }
+
+            .homepage-location-cta {
+              padding-bottom: 0;
+              font-size: 0.88rem;
+            }
+
+            .homepage-location-image-wrap {
+              border-radius: 1.35rem;
+            }
+          }
+        `;
+        document.head.appendChild(locationStyles);
+      }
+    }
+  }
+
   // Location page: turn the Private Offices card image into a four-image carousel.
   // It auto-rotates and also supports touch/finger swiping with native momentum scrolling.
   const privateOfficesHeading = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.trim() === 'Private Offices');
