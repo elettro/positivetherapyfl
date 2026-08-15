@@ -54,3 +54,37 @@
   --radius-xl: 1.5rem;
   --radius-full: 9999px;
 }
+
+/* Homepage desktop hero composition.
+ * Keep the telehealth photo clear and move foreground content lower so both faces remain visible.
+ */
+@media (min-width: 1024px) {
+  body:has(img[src$="16x9-homepage-telemed-example-women.webp"]) main > section:first-of-type {
+    align-items: flex-end !important;
+    padding-top: 20rem !important;
+    padding-bottom: 3.5rem !important;
+  }
+
+  body:has(img[src$="16x9-homepage-telemed-example-women.webp"]) main > section:first-of-type > div.absolute.inset-0 > div.absolute.inset-0 {
+    display: none !important;
+  }
+
+  body:has(img[src$="16x9-homepage-telemed-example-women.webp"]) img[src$="16x9-homepage-telemed-example-women.webp"] {
+    opacity: 1 !important;
+    object-position: center 42% !important;
+  }
+
+  body:has(img[src$="16x9-homepage-telemed-example-women.webp"]) main > section:first-of-type > div.relative.z-10 {
+    align-items: end !important;
+  }
+
+  body:has(img[src$="16x9-homepage-telemed-example-women.webp"]) main > section:first-of-type > div.relative.z-10 > div:first-child {
+    align-self: end !important;
+    max-width: 680px;
+  }
+
+  body:has(img[src$="16x9-homepage-telemed-example-women.webp"]) main > section:first-of-type > div.relative.z-10 > div:nth-child(2) {
+    align-self: end !important;
+    margin-bottom: 0 !important;
+  }
+}
