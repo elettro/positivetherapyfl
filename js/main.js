@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (normalized === 'couples counseling' || normalized === 'couples & family therapy' || normalized === 'couples and family therapy') {
-        link.textContent = 'Couples & Family Therapy';
+        link.textContent = 'Couples Counseling';
         link.classList.add('featured-service-link');
         link.setAttribute('data-featured-label', 'Featured');
       }
