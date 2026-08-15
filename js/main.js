@@ -71,100 +71,199 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
-  // Global Services navigation: give the three priority services a consistent
-  // featured treatment without muting or shrinking any of the other services.
+  // Global Services navigation: show only the current eight priority services.
+  // Weight Loss GLP-1 is intentionally treated as the strongest CTA.
   if (header) {
-    header.querySelectorAll('a').forEach(link => {
-      const label = link.textContent.replace(/\s+/g, ' ').trim();
-      const normalized = label.toLowerCase();
+    const serviceItems = [
+      { label: 'Weight Loss GLP-1', href: '/positivetherapyfl/glp-1-weight-loss/', featured: true },
+      { label: 'Individual Therapy', href: '/positivetherapyfl/individual-counseling/' },
+      { label: 'Couples And Family Therapy', href: '/positivetherapyfl/couples-counseling/' },
+      { label: 'Teen Counselling', href: '/positivetherapyfl/teen-adolescent-therapy/' },
+      { label: 'Maternal Mental Wellness', href: '/positivetherapyfl/support-for-new-mothers/' },
+      { label: 'Couples Retreat', href: '/positivetherapyfl/faq/#book' },
+      { label: 'ADHD Evaluation Package', href: '/positivetherapyfl/faq/#book' },
+      { label: 'Autism Consultation', href: '/positivetherapyfl/faq/#book' }
+    ];
 
-      if (normalized === 'individual counseling' || normalized === 'individual therapy') {
-        link.textContent = 'Individual Therapy';
-        link.classList.add('featured-service-link');
-        link.setAttribute('data-featured-label', 'Featured');
-      }
-
-      if (normalized === 'couples counseling' || normalized === 'couples & family therapy' || normalized === 'couples and family therapy') {
-        link.textContent = 'Couples Counseling';
-        link.classList.add('featured-service-link');
-        link.setAttribute('data-featured-label', 'Featured');
-      }
-
-      if (normalized === 'weight loss') {
-        link.classList.add('featured-service-link', 'weight-loss-featured-photo');
-        link.setAttribute('data-featured-label', 'Featured');
-      }
+    const desktopServicesGroup = Array.from(header.querySelectorAll('.group')).find(group => {
+      const button = group.querySelector(':scope > button');
+      return button && button.textContent.replace(/\s+/g, ' ').trim().startsWith('Services');
     });
 
-    if (!document.getElementById('featured-service-nav-styles')) {
-      const featuredServiceStyles = document.createElement('style');
-      featuredServiceStyles.id = 'featured-service-nav-styles';
-      featuredServiceStyles.textContent = `
-        @media (min-width: 640px) {
-          header a.featured-service-link {
-            position: relative !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: space-between !important;
-            gap: 0.75rem !important;
-            min-height: 3.15rem !important;
-            padding: 0.72rem 0.95rem !important;
-            margin: 0.18rem 0 !important;
-            border: 1px solid rgba(10, 67, 87, 0.11) !important;
-            border-radius: 999px !important;
-            background: linear-gradient(90deg, rgba(224, 242, 241, 0.95), rgba(244, 239, 230, 0.82)) !important;
-            color: #0a4357 !important;
-            font-weight: 800 !important;
-            box-shadow: 0 6px 18px rgba(10, 67, 87, 0.06) !important;
-            transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, border-color 180ms ease !important;
-          }
+    if (desktopServicesGroup) {
+      const dropdownShell = desktopServicesGroup.querySelector(':scope > div.absolute');
+      const dropdownCard = dropdownShell?.firstElementChild;
 
-          header a.featured-service-link::after {
-            content: attr(data-featured-label);
-            flex: 0 0 auto;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 1.45rem;
-            padding: 0 0.55rem;
-            border-radius: 999px;
-            background: #0a4357;
-            color: #fff;
-            font-size: 0.57rem;
-            font-weight: 900;
-            letter-spacing: 0.11em;
-            text-transform: uppercase;
-            opacity: 0.92;
-          }
+      if (dropdownShell && dropdownCard) {
+        dropdownShell.style.width = '560px';
+        dropdownShell.style.left = '-3rem';
+        dropdownCard.innerHTML = `
+          <div class="services-priority-menu">
+            <div class="services-priority-heading">
+              <span class="material-symbols-outlined" aria-hidden="true">psychology</span>
+              <span>Services</span>
+            </div>
+            <div class="services-priority-grid">
+              ${serviceItems.map(item => `
+                <a href="${item.href}" class="${item.featured ? 'services-priority-featured' : 'services-priority-link'}">
+                  ${item.featured ? '<img src="/positivetherapyfl/assets/images/team/1x1-pa-c-weight-loss-marie-claude-dubuc.webp" alt="" aria-hidden="true">' : ''}
+                  <span>${item.label}</span>
+                  ${item.featured ? '<span class="services-priority-cta">Explore</span>' : '<span class="material-symbols-outlined services-priority-arrow" aria-hidden="true">arrow_forward</span>'}
+                </a>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      }
+    }
 
-          header a.weight-loss-featured-photo {
-            background-image: url('/positivetherapyfl/assets/images/team/1x1-pa-c-weight-loss-marie-claude-dubuc.webp'), linear-gradient(90deg, rgba(224, 242, 241, 0.95), rgba(244, 239, 230, 0.82)) !important;
-            background-repeat: no-repeat, no-repeat !important;
-            background-size: 38px 38px, 100% 100% !important;
-            background-position: 58% center, center !important;
-          }
+    const mobileMenuCandidate = header.querySelector('[data-mobile-menu]');
+    if (mobileMenuCandidate) {
+      const servicesHeading = Array.from(mobileMenuCandidate.querySelectorAll('div')).find(element => {
+        return element.children.length === 0 && element.textContent.trim().toLowerCase() === 'services';
+      });
 
-          header a.featured-service-link:hover,
-          header a.featured-service-link:focus-visible {
-            transform: translateX(4px) !important;
-            border-color: rgba(10, 67, 87, 0.26) !important;
-            background-color: #e0f2f1 !important;
-            box-shadow: 0 12px 28px rgba(10, 67, 87, 0.12) !important;
-          }
+      const mobileServicesSection = servicesHeading?.parentElement;
+      const mobileServicesGrid = mobileServicesSection?.querySelector('.grid');
 
-          header a:not(.featured-service-link):hover,
-          header a:not(.featured-service-link):focus-visible {
-            color: #0a4357;
-          }
+      if (mobileServicesGrid) {
+        mobileServicesGrid.className = 'grid grid-cols-1 gap-1 pl-2';
+        mobileServicesGrid.innerHTML = serviceItems.map(item => `
+          <a href="${item.href}" class="${item.featured ? 'mobile-priority-weight-loss' : 'py-2 text-sm font-medium text-[#1A1C1D] hover:text-[#0A4357]'}">
+            ${item.featured ? '<span>Weight Loss GLP-1</span><span class="material-symbols-outlined text-base" aria-hidden="true">arrow_forward</span>' : item.label}
+          </a>
+        `).join('');
+      }
+    }
+
+    if (!document.getElementById('services-priority-nav-styles')) {
+      const servicesPriorityStyles = document.createElement('style');
+      servicesPriorityStyles.id = 'services-priority-nav-styles';
+      servicesPriorityStyles.textContent = `
+        .services-priority-heading {
+          display: flex;
+          align-items: center;
+          gap: 0.45rem;
+          padding: 0.25rem 0.4rem 0.75rem;
+          margin-bottom: 0.35rem;
+          color: #6B5D3E;
+          border-bottom: 1px solid rgba(10, 67, 87, 0.08);
+          font-size: 0.7rem;
+          font-weight: 800;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+        }
+
+        .services-priority-heading .material-symbols-outlined {
+          color: #8BA888;
+          font-size: 1.05rem;
+        }
+
+        .services-priority-grid {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 0.45rem 0.6rem;
+        }
+
+        .services-priority-featured {
+          grid-column: 1 / -1;
+          min-height: 4.4rem;
+          display: grid;
+          grid-template-columns: 3rem 1fr auto;
+          align-items: center;
+          gap: 0.85rem;
+          padding: 0.55rem 0.75rem;
+          margin-bottom: 0.3rem;
+          border-radius: 1.15rem;
+          background: #0A4357;
+          color: #fff !important;
+          box-shadow: 0 12px 26px rgba(10, 67, 87, 0.18);
+          font-weight: 800;
+          text-decoration: none;
+          transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+        }
+
+        .services-priority-featured img {
+          width: 3rem;
+          height: 3rem;
+          border-radius: 999px;
+          object-fit: cover;
+          border: 2px solid rgba(255,255,255,0.68);
+        }
+
+        .services-priority-cta {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 2rem;
+          padding: 0 0.8rem;
+          border-radius: 999px;
+          background: #fff;
+          color: #0A4357;
+          font-size: 0.68rem;
+          font-weight: 900;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+        }
+
+        .services-priority-featured:hover,
+        .services-priority-featured:focus-visible {
+          transform: translateY(-2px);
+          background: #1B3A46;
+          box-shadow: 0 16px 34px rgba(10, 67, 87, 0.25);
+        }
+
+        .services-priority-link {
+          min-height: 2.9rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 0.5rem;
+          padding: 0.65rem 0.75rem;
+          border-radius: 0.9rem;
+          color: #1A1C1D !important;
+          font-size: 0.84rem;
+          font-weight: 650;
+          line-height: 1.2;
+          text-decoration: none;
+          transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+        }
+
+        .services-priority-link:hover,
+        .services-priority-link:focus-visible {
+          background: #E0F2F1;
+          color: #0A4357 !important;
+          transform: translateX(2px);
+        }
+
+        .services-priority-arrow {
+          flex: 0 0 auto;
+          color: #8BA888;
+          font-size: 1rem;
+        }
+
+        .mobile-priority-weight-loss {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 0.75rem;
+          margin: 0.2rem 0 0.35rem;
+          padding: 0.8rem 0.9rem;
+          border-radius: 0.9rem;
+          background: #0A4357;
+          color: #fff !important;
+          font-size: 0.9rem;
+          font-weight: 800;
+          box-shadow: 0 8px 18px rgba(10, 67, 87, 0.14);
         }
 
         @media (max-width: 639px) {
-          header a.featured-service-link::after {
-            content: none !important;
+          .services-priority-menu {
+            display: none;
           }
         }
       `;
-      document.head.appendChild(featuredServiceStyles);
+      document.head.appendChild(servicesPriorityStyles);
     }
   }
 
