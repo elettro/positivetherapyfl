@@ -55,6 +55,26 @@
   --radius-full: 9999px;
 }
 
+/* Homepage hero text panel.
+ * Add a soft glass panel behind the left-side messaging so text stays readable
+ * against the telehealth background photo.
+ */
+body:has(img[src$="16x9-homepage-telemed-example-women.webp"]) main > section:first-of-type > div.relative.z-10 > div:first-child {
+  background: rgba(244, 239, 230, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 2rem;
+  box-shadow: 0 20px 50px rgba(27, 58, 70, 0.14);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  body:has(img[src$="16x9-homepage-telemed-example-women.webp"]) main > section:first-of-type > div.relative.z-10 > div:first-child {
+    padding: 2rem;
+  }
+}
+
 /* Homepage desktop hero composition.
  * Keep the telehealth photo clear and move foreground content lower so both faces remain visible.
  */
@@ -80,7 +100,8 @@
 
   body:has(img[src$="16x9-homepage-telemed-example-women.webp"]) main > section:first-of-type > div.relative.z-10 > div:first-child {
     align-self: end !important;
-    max-width: 680px;
+    max-width: 720px;
+    padding: 2.25rem 2.5rem;
   }
 
   body:has(img[src$="16x9-homepage-telemed-example-women.webp"]) main > section:first-of-type > div.relative.z-10 > div:nth-child(2) {
