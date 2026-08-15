@@ -1,0 +1,56 @@
+/**
+ * Positive Therapy FL - Serene Shore Design System Variables
+ */
+:root {
+  /* Brand Colors */
+  --color-primary: #0a4357;
+  --color-primary-container: #2a5b6f;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #a2d1e9;
+
+  --color-secondary: #6b5d3e;
+  --color-secondary-container: #f2ddb7;
+  --color-on-secondary: #ffffff;
+  --color-on-secondary-container: #706142;
+
+  --color-tertiary: #59360d;
+  --color-tertiary-container: #744d22;
+  
+  --color-background: #f9f9fb;
+  --color-surface: #f9f9fb;
+  --color-surface-dim: #d9dadc;
+  --color-surface-container: #edeeef;
+  --color-surface-container-low: #f3f3f5;
+  --color-surface-container-lowest: #ffffff;
+  --color-on-surface: #1a1c1d;
+  --color-on-surface-variant: #41484c;
+
+  --color-ocean-deep: #1B3A46;
+  --color-gulf-stream: #E0F2F1;
+  --color-sand-dune: #F4EFE6;
+  --color-sea-glass: #8BA888;
+  --color-coral-reef: #E67E6E;
+
+  --color-outline: #71787c;
+  --color-outline-variant: #c0c7cc;
+
+  /* Typography */
+  --font-display: 'Manrope', system-ui, -apple-system, sans-serif;
+  --font-headline: 'Manrope', system-ui, -apple-system, sans-serif;
+  --font-body: 'Work Sans', system-ui, -apple-system, sans-serif;
+
+  /* Spacing */
+  --unit: 8px;
+  --margin-desktop: 80px;
+  --margin-mobile: 20px;
+  --gutter: 24px;
+  --section-padding: 64px;
+
+  /* Border Radii */
+  --radius-sm: 0.25rem;
+  --radius-default: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+}

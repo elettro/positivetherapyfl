@@ -1,0 +1,14 @@
+{
+  "name": "positivetherapyfl",
+  "version": "1.0.0",
+  "description": "Positive Therapy FL - Official Website",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve . -p 3000",
+    "start": "npx serve . -p 3000",
+    "preview": "npx serve . -p 3000"
+  },
+  "keywords": ["therapy", "mental-health", "south-florida", "glp-1", "integrative-wellness"],
+  "author": "Positive Therapy FL",
+  "license": "UNLICENSED"
+}
