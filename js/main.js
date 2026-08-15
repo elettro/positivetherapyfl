@@ -453,4 +453,141 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
     }
   }
+
+  // Location page: turn the Private Offices card image into a four-image carousel.
+  // It auto-rotates and also supports touch/finger swiping with native momentum scrolling.
+  const privateOfficesHeading = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.trim() === 'Private Offices');
+  const privateOfficesCard = privateOfficesHeading?.closest('.bg-white.rounded-2xl');
+  const privateOfficesMedia = privateOfficesCard?.firstElementChild;
+
+  if (privateOfficesCard && privateOfficesMedia && !privateOfficesCard.querySelector('[data-office-carousel]')) {
+    const officeImages = [
+      '/positivetherapyfl/assets/images/location/office-445X234-v1.png',
+      '/positivetherapyfl/assets/images/location/office-445X234-v2.png',
+      '/positivetherapyfl/assets/images/location/office-445X234-v3.png',
+      '/positivetherapyfl/assets/images/location/office-445X234-v4.png'
+    ];
+
+    privateOfficesMedia.className = 'h-48 relative overflow-hidden';
+    privateOfficesMedia.innerHTML = `
+      <div data-office-carousel class="office-carousel-track" aria-label="Private office photo carousel">
+        ${officeImages.map((src, index) => `
+          <div class="office-carousel-slide" data-office-slide>
+            <img src="${src}" alt="Positive Therapy FL private office ${index + 1}" draggable="false">
+          </div>
+        `).join('')}
+      </div>
+      <div class="office-carousel-dots" aria-hidden="true">
+        ${officeImages.map((_, index) => `<span class="office-carousel-dot${index === 0 ? ' is-active' : ''}"></span>`).join('')}
+      </div>
+    `;
+
+    if (!document.getElementById('office-carousel-styles')) {
+      const carouselStyles = document.createElement('style');
+      carouselStyles.id = 'office-carousel-styles';
+      carouselStyles.textContent = `
+        .office-carousel-track {
+          display: flex;
+          width: 100%;
+          height: 100%;
+          overflow-x: auto;
+          overflow-y: hidden;
+          scroll-snap-type: x mandatory;
+          scroll-behavior: smooth;
+          -webkit-overflow-scrolling: touch;
+          overscroll-behavior-x: contain;
+          touch-action: pan-x;
+          scrollbar-width: none;
+        }
+
+        .office-carousel-track::-webkit-scrollbar {
+          display: none;
+        }
+
+        .office-carousel-slide {
+          flex: 0 0 100%;
+          width: 100%;
+          height: 100%;
+          scroll-snap-align: start;
+          scroll-snap-stop: always;
+        }
+
+        .office-carousel-slide img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          user-select: none;
+          -webkit-user-drag: none;
+        }
+
+        .office-carousel-dots {
+          position: absolute;
+          left: 50%;
+          bottom: 0.65rem;
+          z-index: 4;
+          transform: translateX(-50%);
+          display: flex;
+          gap: 0.35rem;
+          padding: 0.3rem 0.45rem;
+          border-radius: 999px;
+          background: rgba(10, 67, 87, 0.42);
+          backdrop-filter: blur(5px);
+          -webkit-backdrop-filter: blur(5px);
+          pointer-events: none;
+        }
+
+        .office-carousel-dot {
+          width: 0.42rem;
+          height: 0.42rem;
+          border-radius: 999px;
+          background: rgba(255,255,255,0.55);
+          transition: width 180ms ease, background 180ms ease;
+        }
+
+        .office-carousel-dot.is-active {
+          width: 1rem;
+          background: #fff;
+        }
+      `;
+      document.head.appendChild(carouselStyles);
+    }
+
+    const track = privateOfficesCard.querySelector('[data-office-carousel]');
+    const slides = Array.from(privateOfficesCard.querySelectorAll('[data-office-slide]'));
+    const dots = Array.from(privateOfficesCard.querySelectorAll('.office-carousel-dot'));
+    let activeOfficeSlide = 0;
+    let officeCarouselTimer;
+
+    const setActiveOfficeSlide = index => {
+      activeOfficeSlide = (index + slides.length) % slides.length;
+      dots.forEach((dot, dotIndex) => dot.classList.toggle('is-active', dotIndex === activeOfficeSlide));
+    };
+
+    const goToOfficeSlide = index => {
+      setActiveOfficeSlide(index);
+      track.scrollTo({ left: track.clientWidth * activeOfficeSlide, behavior: 'smooth' });
+    };
+
+    const startOfficeCarousel = () => {
+      window.clearInterval(officeCarouselTimer);
+      officeCarouselTimer = window.setInterval(() => goToOfficeSlide(activeOfficeSlide + 1), 4000);
+    };
+
+    let officeScrollTimer;
+    track.addEventListener('scroll', () => {
+      window.clearTimeout(officeScrollTimer);
+      officeScrollTimer = window.setTimeout(() => {
+        const index = Math.round(track.scrollLeft / Math.max(track.clientWidth, 1));
+        setActiveOfficeSlide(index);
+      }, 80);
+    }, { passive: true });
+
+    track.addEventListener('pointerdown', () => window.clearInterval(officeCarouselTimer), { passive: true });
+    track.addEventListener('pointerup', startOfficeCarousel, { passive: true });
+    track.addEventListener('touchend', startOfficeCarousel, { passive: true });
+    window.addEventListener('resize', () => goToOfficeSlide(activeOfficeSlide), { passive: true });
+
+    startOfficeCarousel();
+  }
 });
