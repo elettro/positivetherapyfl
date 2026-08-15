@@ -64,62 +64,79 @@ header > div:first-child > a:first-child > img[src$="brand/logo.png"] {
   margin-right: 0.5rem;
 }
 
-/* Mobile header: text brand + phone + hamburger only. */
+.mobile-call-cta {
+  display: none;
+}
+
+/* Mobile header: persistent brand row + scroll-aware consultation row. */
 @media (max-width: 639px) {
+  header {
+    overflow: visible !important;
+  }
+
   header > div:first-child {
-    height: 4.25rem !important;
-    padding-left: 0.75rem !important;
-    padding-right: 0.75rem !important;
-    gap: 0.5rem !important;
+    height: 4.35rem !important;
+    padding-left: 0.65rem !important;
+    padding-right: 0.65rem !important;
+    gap: 0.45rem !important;
+    position: relative;
+    z-index: 3;
   }
 
   header > div:first-child > a:first-child {
     flex: 1 1 auto !important;
     min-width: 0 !important;
-    gap: 0 !important;
+    gap: 0.45rem !important;
   }
 
   header > div:first-child > a:first-child > img[src$="brand/logo.png"] {
-    display: none !important;
+    display: block !important;
+    height: 2.2rem !important;
+    width: auto !important;
+    transform: none !important;
+    margin-right: 0 !important;
+    flex: 0 0 auto !important;
   }
 
   header > div:first-child > a:first-child > div {
     min-width: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
   }
 
   header > div:first-child > a:first-child > div > span:first-child {
-    font-size: 1.05rem !important;
+    font-size: 0.92rem !important;
     line-height: 1.05 !important;
     white-space: nowrap !important;
   }
 
   header > div:first-child > a:first-child > div > span:last-child {
-    display: none !important;
+    display: block !important;
+    font-size: 0.52rem !important;
+    line-height: 1.05 !important;
+    letter-spacing: 0.055em !important;
+    white-space: nowrap !important;
+    margin-top: 0.15rem !important;
   }
 
   header > div:first-child > div:last-child {
     flex: 0 0 auto !important;
-    gap: 0.35rem !important;
+    gap: 0 !important;
   }
 
   header > div:first-child > div:last-child > a[href^="tel:"] {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 2.3rem !important;
-    height: 2.3rem !important;
-    padding: 0 !important;
-    border-radius: 0.65rem !important;
+    display: none !important;
   }
 
-  header > div:first-child > div:last-child > a[href^="tel:"] .material-symbols-outlined {
-    font-size: 1.2rem !important;
+  header > div:first-child > div:last-child > a:not([href^="tel:"]) {
+    display: none !important;
   }
 
   header > div:first-child > div:last-child > button[data-menu-toggle] {
     flex: 0 0 auto !important;
-    width: 2.4rem !important;
-    height: 2.4rem !important;
+    width: 2.45rem !important;
+    height: 2.45rem !important;
     padding: 0 !important;
     display: flex !important;
     align-items: center !important;
@@ -127,7 +144,54 @@ header > div:first-child > a:first-child > img[src$="brand/logo.png"] {
   }
 
   header > div:first-child > div:last-child > button[data-menu-toggle] .material-symbols-outlined {
-    font-size: 1.4rem !important;
+    font-size: 1.45rem !important;
+  }
+
+  .mobile-call-cta {
+    display: block;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-height: 3.15rem;
+    overflow: hidden;
+    background: #0A4357;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 7px 18px rgba(10, 67, 87, 0.14);
+    transition: max-height 220ms ease, opacity 180ms ease, transform 220ms ease;
+  }
+
+  .mobile-call-cta > a {
+    min-height: 3.15rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0.65rem 0.75rem;
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    font-weight: 800;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .mobile-call-cta .material-symbols-outlined {
+    font-size: 1.15rem;
+  }
+
+  .mobile-call-cta .mobile-call-number {
+    font-size: 0.76rem;
+    font-weight: 600;
+    opacity: 0.88;
+  }
+
+  .mobile-call-cta.is-hidden {
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-100%);
+    pointer-events: none;
   }
 }
 
